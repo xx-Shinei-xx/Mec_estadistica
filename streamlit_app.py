@@ -48,4 +48,6 @@ num_steps = st.sidebar.slider("Number of Steps", min_value=500, max_value=5000, 
 final_positions = run_simulation(num_particles, box_length, temperature, num_steps)
 
 # Plotting the final positions of the particles
-st.pyplot(plt.hist(final_positions, bins=30, density=True, alpha=0.7))
+histogram_data = np.histogram(final_positions, bins=30, density=True)
+plt.bar(histogram_data[1][:-1], histogram_data[0], width=np.diff(histogram_data[1]), alpha=0.7)
+st.pyplot()
