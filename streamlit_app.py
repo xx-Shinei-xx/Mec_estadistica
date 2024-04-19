@@ -1,6 +1,6 @@
 import numpy as np
-import matplotlib.pyplot as plt
 import streamlit as st
+import plotly.graph_objects as go
 
 # Function to initialize the particle system
 def initialize_system(num_particles, box_length):
@@ -47,7 +47,26 @@ num_steps = st.sidebar.slider("Number of Steps", min_value=500, max_value=5000, 
 # Run the simulation
 final_positions = run_simulation(num_particles, box_length, temperature, num_steps)
 
-# Plotting the final positions of the particles
+# Create histogram data
 histogram_data = np.histogram(final_positions, bins=30, density=True)
-plt.bar(histogram_data[1][:-1], histogram_data[0], width=np.diff(histogram_data[1]), alpha=0.7)
-st.pyplot()
+
+# Define colormap based on histogram data values
+color_scale = 'Reds'  # Choose a colormap (e.g., 'Reds')
+
+# Create a bar chart using plotly
+fig = go.Figure(data=[go.Bar(
+    x=histogram_data[1][:-1],
+    y=histogram_data[0],
+    marker=dict(color=histogram_data[0], colorbar=dict(title='Density', tickvals=[], ticktext=[]), colorscale=color_scale),
+    hoverinfo='x+y',
+)])
+
+# Update layout of the plot
+fig.update_layout(
+    title='Particle Distribution in Equilibrium',
+    xaxis_title='Position',
+    yaxis_title='Density',
+)
+
+# Display the plot using Streamlit
+st.plotly_chart(fig)
