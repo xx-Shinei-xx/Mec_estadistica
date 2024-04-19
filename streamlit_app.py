@@ -2,7 +2,7 @@ import numpy as np
 import streamlit as st
 import plotly.graph_objects as go
 
-# Function to initialize the particle system
+# inicializar el sistema de partículas
 def initialize_system(num_particles, box_length):
     positions = np.random.uniform(0, box_length, size=num_particles)
     return positions
