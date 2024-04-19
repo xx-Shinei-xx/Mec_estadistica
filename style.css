@@ -1,0 +1,10 @@
+section[data-testid=stSidebar] div.stButton button {
+    background-color: #9AD0C2;
+    width: 100%;
+    text-align: right;
+    border: none;
+}
+
+section[data-testid=stSidebar] {
+    background-color: #9AD0C2;
+}
