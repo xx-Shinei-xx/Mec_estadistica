@@ -36,7 +36,7 @@ def run_simulation(num_particles, box_length, temperature, num_steps):
     return positions
 
 # Streamlit app
-st.title("Demon Algorithm Simulation")
+st.title("The demon algorithm")
 
 # Sidebar for parameter inputs
 num_particles = st.sidebar.slider("Número de partículas", min_value=10, max_value=100, value=50, step=10)
